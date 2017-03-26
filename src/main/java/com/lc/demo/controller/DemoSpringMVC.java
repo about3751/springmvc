@@ -20,7 +20,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/main")
 public class DemoSpringMVC {
+    static
+    {
 
+    }
     static {
         System.out.print("Github Update");
     }
