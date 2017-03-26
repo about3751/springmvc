@@ -21,6 +21,9 @@ import java.util.Map;
 @RequestMapping("/main")
 public class DemoSpringMVC {
 
+    static {
+        System.out.print("Github Update");
+    }
 
     @Autowired
     @Qualifier(value = "bookService")
