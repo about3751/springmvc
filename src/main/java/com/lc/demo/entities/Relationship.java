@@ -1,20 +1,23 @@
 package com.lc.demo.entities;
 
+/**
+ * Created by leich on 2017/3/27.
+ */
 public class Relationship {
+
     private Integer id;
 
-    private Integer personId;
+    private Book bookId;
 
-    private Integer bookId;
-
-    public Relationship(Integer id, Integer personId, Integer bookId) {
-        this.id = id;
-        this.personId = personId;
-        this.bookId = bookId;
-    }
+    private Person personId;
 
     public Relationship() {
-        super();
+    }
+
+    public Relationship(Integer id, Book bookId, Person personId) {
+        this.id = id;
+        this.bookId = bookId;
+        this.personId = personId;
     }
 
     public Integer getId() {
@@ -25,19 +28,19 @@ public class Relationship {
         this.id = id;
     }
 
-    public Integer getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(Integer personId) {
-        this.personId = personId;
-    }
-
-    public Integer getBookId() {
+    public Book getBookId() {
         return bookId;
     }
 
-    public void setBookId(Integer bookId) {
+    public void setBookId(Book bookId) {
         this.bookId = bookId;
+    }
+
+    public Person getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Person personId) {
+        this.personId = personId;
     }
 }
