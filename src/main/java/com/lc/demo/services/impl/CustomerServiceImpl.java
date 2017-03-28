@@ -1,7 +1,8 @@
-package com.lc.demo.services;
+package com.lc.demo.services.impl;
 
 import com.lc.demo.dao.CustomerMapper;
 import com.lc.demo.entities.Customer;
+import com.lc.demo.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

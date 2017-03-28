@@ -1,7 +1,8 @@
-package com.lc.demo.services;
+package com.lc.demo.services.impl;
 
 import com.lc.demo.dao.TicketMapper;
 import com.lc.demo.entities.Ticket;
+import com.lc.demo.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,8 @@
-package com.lc.demo.services;
+package com.lc.demo.services.impl;
 
 import com.lc.demo.dao.PersonMapper;
 import com.lc.demo.entities.Person;
+import com.lc.demo.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

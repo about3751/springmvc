@@ -1,7 +1,8 @@
-package com.lc.demo.services;
+package com.lc.demo.services.impl;
 
 import com.lc.demo.dao.BookMapper;
 import com.lc.demo.entities.Book;
+import com.lc.demo.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
