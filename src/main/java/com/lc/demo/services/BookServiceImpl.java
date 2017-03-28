@@ -33,10 +33,14 @@ public class BookServiceImpl implements BookService {
     }
 
     public int addNewBook(Book book) {
-       return bookMapper.insertNewBook(book);
+        return bookMapper.insertNewBook(book);
     }
 
     public void removeBookById(Integer id) {
         bookMapper.deleteByPrimaryKey(id);
+    }
+
+    public void removeBatch(List<Integer> id) {
+        bookMapper.deleteBatch(id);
     }
 }

@@ -1,9 +1,121 @@
 package com.lc.demo.test;
 
+import com.lc.demo.entities.*;
+import com.lc.demo.services.*;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 /**
  * Created by leich on 2017/3/26.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:springmvc.xml")
 public class Test {
+
+
+    @Autowired
+    private TicketService ticketService;
+
+    @Autowired
+    private BookService bookService;
+
+    @Autowired
+    private RelationShipService relationShipService;
+
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private PersonService personService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @org.junit.Test
+    public void test() {
+        bookService.queryAll();
+    }
+
+    @org.junit.Test
+    public void test1()
+    {
+        List<Relationship> relationShips = relationShipService.getAll();
+
+        for (Relationship relationShip : relationShips) {
+            System.out.println(relationShip.getId() + " -- " + relationShip.getBookId().getBookName() + " -- " + relationShip.getPersonId().getPersonName());
+        }
+    }
+
+    /**
+     * Car和Person 一对多查询
+     */
+    @org.junit.Test
+    public void testCarOnToMany()
+    {
+
+            Car cars = carService.selectCarById("1");
+            System.out.println(" C " + cars.getId() + " -- " +  cars.getCarName());
+            for (Person person : cars.getPersonList()) {
+                System.out.println(" P " + person.getId() + " -- " +  person.getPersonName());
+            }
+    }
+
+
+    @org.junit.Test
+    public void test3()
+    {
+        List<Person> personList = personService.selectPersons();
+
+        for (Person person : personList) {
+            System.out.println(" P " + person.getId() + " -- " +  person.getPersonName()
+
+                    + " -- "  + person.getCar().getCarName()
+
+            );
+        }
+
+    }
+
+    @org.junit.Test
+    public void test4()
+    {
+
+        List<Car> cars = carService.queryAll();
+
+        for (Car car : cars) {
+            System.out.println(" C " + car.getId() + " -- " +  car.getCarName());
+            for (Person person : car.getPersonList()) {
+                System.out.println(" P " + person.getId() + " -- " +  person.getPersonName());
+
+            }
+        }
+
+    }
+
+    @org.junit.Test
+    public void testOneToMany()
+    {
+        Customer customer = customerService.queryCustomerByName("小王");
+        System.out.println(customer.getCustomerName());
+        List<Ticket> tickets = customer.getTickets();
+        for (Ticket ticket : tickets) {
+            System.out.println(ticket.getAddress());
+        }
+    }
+
+    @org.junit.Test
+    public void testQueryAllTickets()
+    {
+        List<Ticket> tickets = ticketService.queryAllTikets();
+
+        for (Ticket ticket : tickets) {
+            System.out.println(ticket.getAddress() + " --- " + ticket.getCustomerId().getCustomerName());
+        }
+    }
+
+
 }

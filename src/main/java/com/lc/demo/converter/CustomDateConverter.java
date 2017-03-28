@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by leich on 2017/3/26.
  */
-public class CustomDateConverter implements Converter<String,Date> {
+public class CustomDateConverter implements Converter<String, Date> {
     public Date convert(String s) {
         return null;
     }

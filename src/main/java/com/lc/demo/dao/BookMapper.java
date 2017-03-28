@@ -22,4 +22,6 @@ public interface BookMapper {
     List<Book> selectAll();
 
     int insertNewBook(Book book);
+
+    void deleteBatch(List id);
 }

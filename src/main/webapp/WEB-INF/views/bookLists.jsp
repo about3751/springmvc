@@ -22,40 +22,40 @@
 	 -->
     <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $(".delete").click(function () {
-                var href = $(this).attr("href");
-                $("form").attr("action", href).submit();
-                return false;
-            });
-        })
+        //        $(function () {
+        //            $(".delete").click(function () {
+        //                var href = $(this).attr("href");
+        //                $("form").attr("action", href).submit();
+        //                return false;
+        //            });
+        //        })
     </script>
 </head>
 <body>
 
 <!-- 配合JQuery实现Delete请求 实际上为一个POST请求 -->
-<form action="" method="POST">
+<form action="${pageContext.request.contextPath}/main/book" method="POST">
     <input type="hidden" name="_method" value="DELETE"/>
-</form>
-
-<table border="1">
-    <tr>
-        <td>ID</td>
-        <td>书名</td>
-        <td>加入时间</td>
-        <td>编辑</td>
-        <td>操作</td>
-    </tr>
-    <c:forEach items="${requestScope.books}" var="book">
+    <table border="1">
         <tr>
-            <td>${book.id}</td>
-            <td>${book.bookName}</td>
-            <td>${book.addTime}</td>
-            <td><a href="${pageContext.request.contextPath}/main/book/${book.id}">修改</a></td>
-            <td><a class="delete" href="${pageContext.request.contextPath}/main/book/${book.id}">删除</a></td>
+            <td>ID</td>
+            <td>书名</td>
+            <td>加入时间</td>
+            <td>编辑</td>
+            <td>选择</td>
         </tr>
-    </c:forEach>
-</table>
-
+        <c:forEach items="${requestScope.books}" var="book">
+            <tr>
+                <td>${book.id}</td>
+                <td>${book.bookName}</td>
+                <td>${book.addTime}</td>
+                <td><a href="${pageContext.request.contextPath}/main/book/${book.id}">修改</a></td>
+                <td><input type="checkbox" name="id" value="${book.id}"/></td>
+            </tr>
+        </c:forEach>
+    </table>
+    <br/>
+    <input type="submit" value="delete"/>
+</form>
 </body>
 </html>

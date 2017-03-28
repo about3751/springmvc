@@ -12,11 +12,11 @@
     <!-- DispatcherServlet上下文， 只管理@Controller类型的bean， 忽略其他型的bean, 如@Service -->
     <context:component-scan base-package="com.lc.demo">
         <context:include-filter type="annotation"
-                                expression="org.springframework.stereotype.Controller" />
+                                expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <!--
 		default-servlet-handler 将在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler,
@@ -40,7 +40,7 @@
     <!-- 引入配置jdbc文件 -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties" />
+        <property name="location" value="classpath:jdbc.properties"/>
     </bean>
 
     <!-- 配置数据源 -->
@@ -58,17 +58,15 @@
         <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
 
 
-        <property name="dataSource" ref="basicDataSource" />
+        <property name="dataSource" ref="basicDataSource"/>
         <!-- 自动扫描mapping.xml文件 -->
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.lc.demo.dao.**" />
+        <property name="basePackage" value="com.lc.demo.dao.**"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
     </bean>
-
-
 
 
 </beans>

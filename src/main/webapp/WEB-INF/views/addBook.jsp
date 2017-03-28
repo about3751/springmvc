@@ -14,11 +14,11 @@
 </head>
 <body>
 
-    <form:form action="book" method="post" modelAttribute="book">
-            <h1>bookName:<from:input type="text" path="bookName"/></h1>
-        <br/>
-        <input type="submit" value="新增" />
-    </form:form>
+<form:form action="book" method="post" modelAttribute="book">
+    <h1>bookName:<from:input type="text" path="bookName"/></h1>
+    <br/>
+    <input type="submit" value="新增"/>
+</form:form>
 
 </body>
 </html>

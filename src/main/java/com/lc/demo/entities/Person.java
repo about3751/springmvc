@@ -1,5 +1,7 @@
 package com.lc.demo.entities;
 
+import java.util.List;
+
 public class Person {
     private Integer id;
 
@@ -7,14 +9,27 @@ public class Person {
 
     private String personPwd;
 
-    public Person(Integer id, String personName, String personPwd) {
+    private Car car;
+
+    private List<Relationship> relationShips;
+
+    public Person(Integer id, String personName, String personPwd,Car car) {
         this.id = id;
         this.personName = personName;
         this.personPwd = personPwd;
+        this.car = car;
     }
 
     public Person() {
         super();
+    }
+
+    public List<Relationship> getRelationShips() {
+        return relationShips;
+    }
+
+    public void setRelationShips(List<Relationship> relationShips) {
+        this.relationShips = relationShips;
     }
 
     public Integer getId() {
@@ -37,7 +52,16 @@ public class Person {
         return personPwd;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     public void setPersonPwd(String personPwd) {
+
         this.personPwd = personPwd == null ? null : personPwd.trim();
     }
 }

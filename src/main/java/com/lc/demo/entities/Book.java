@@ -3,11 +3,14 @@ package com.lc.demo.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Book {
     private Integer id;
 
     private String bookName;
+
+    private List<Relationship> relationShips;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date addTime;
@@ -16,6 +19,14 @@ public class Book {
         this.id = id;
         this.bookName = bookName;
         this.addTime = addTime;
+    }
+
+    public List<Relationship> getRelationShips() {
+        return relationShips;
+    }
+
+    public void setRelationShips(List<Relationship> relationShips) {
+        this.relationShips = relationShips;
     }
 
     public Book() {

@@ -73,7 +73,7 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        
+
         <table tableName="relationship" domainObjectName="Relationship"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
@@ -87,6 +87,6 @@
                selectByExampleQueryId="false">
 
         </table>
-        
+
     </context>
 </generatorConfiguration>

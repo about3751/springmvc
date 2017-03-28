@@ -1,73 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lc.demo.dao.RelationshipMapper" >
-  <resultMap id="BaseResultMap" type="com.lc.demo.entities.Relationship" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="person_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="book_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, person_id, book_id
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from relationship
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from relationship
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.lc.demo.entities.Relationship" >
-    insert into relationship (id, person_id, book_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{personId,jdbcType=INTEGER}, #{bookId,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.lc.demo.entities.Relationship" >
-    insert into relationship
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="personId != null" >
-        person_id,
-      </if>
-      <if test="bookId != null" >
-        book_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="personId != null" >
-        #{personId,jdbcType=INTEGER},
-      </if>
-      <if test="bookId != null" >
-        #{bookId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lc.demo.entities.Relationship" >
-    update relationship
-    <set >
-      <if test="personId != null" >
-        person_id = #{personId,jdbcType=INTEGER},
-      </if>
-      <if test="bookId != null" >
-        book_id = #{bookId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lc.demo.entities.Relationship" >
-    update relationship
-    set person_id = #{personId,jdbcType=INTEGER},
-      book_id = #{bookId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.lc.demo.dao.RelationshipMapper">
+    <resultMap id="Base_Result_Map" type="com.lc.demo.entities.Relationship">
+        <id column="id" javaType="Integer" property="id"/>
+        <association property="bookId" javaType="com.lc.demo.entities.Book">
+            <constructor>
+                <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+                <arg column="book_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+                <arg column="add_time" jdbcType="DATE" javaType="java.util.Date"/>
+            </constructor>
+        </association>
+        <association property="personId" javaType="com.lc.demo.entities.Person">
+            <constructor>
+                <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+                <arg column="person_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+                <arg column="person_pwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            </constructor>
+        </association>
+    </resultMap>
+    
+    <select id="selectRelationshipAll" resultMap="Base_Result_Map">
+        SELECT r.id,b.book_name,p.person_name,b.add_time,p.person_pwd from relationship r
+        INNER JOIN person p
+        INNER JOIN t_book b
+        ON r.person_id = p.id  AND  r.book_id = b.id
+    </select>
+    
 </mapper>

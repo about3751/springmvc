@@ -21,5 +21,7 @@ public interface BookService {
 
     void removeBookById(Integer id);
 
+    void removeBatch(List<Integer> id);
+
 
 }
