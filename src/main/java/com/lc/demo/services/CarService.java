@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface CarService {
 
+    int addCar(Car car);
+
     Car selectCarById(String id);
 
     List<Car> queryAll();

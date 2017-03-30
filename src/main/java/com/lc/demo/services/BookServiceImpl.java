@@ -1,4 +1,4 @@
-package com.lc.demo.services.impl;
+package com.lc.demo.services;
 
 import com.lc.demo.dao.BookMapper;
 import com.lc.demo.entities.Book;

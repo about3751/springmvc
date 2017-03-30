@@ -11,9 +11,9 @@
             <result property="customerTel" column="customerTel"></result>
         </association>
     </resultMap>
-    
+
     <select id="selectAllTickets" resultMap="BaseResultMap">
         SELECT * FROM t_ticket t , t_customer c WHERE t.ticketCId = c.customerId
     </select>
-    
+
 </mapper>

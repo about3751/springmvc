@@ -1,17 +1,16 @@
 package com.lc.demo.controller;
 
-import com.lc.demo.dao.RelationshipMapper;
 import com.lc.demo.entities.Book;
 import com.lc.demo.entities.Relationship;
 import com.lc.demo.services.BookService;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by leich on 2017/3/26.
@@ -28,12 +27,32 @@ public class DemoSpringMVC {
     }
 
     @Autowired
-    @Qualifier(value = "bookService")
     private BookService bookService;
 
 
-    @Autowired
-    private RelationshipMapper relationshipMapper;
+    /**
+     * HTTP 状态码错误
+     * @return
+     */
+    @ResponseStatus(value = HttpStatus.NOT_FOUND,reason = "URL路径错误")
+    public String testHttpStatus()
+    {
+        return "exception";
+    }
+
+
+    /**
+     * 针对当前Handler的Exception处理
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(value = {Exception.class})
+    public ModelAndView testException(Exception ex)
+    {
+        ModelAndView modelAndView = new ModelAndView("exception");
+        modelAndView.addObject("ex",ex);
+        return modelAndView;
+    }
 
     @RequestMapping("/test")
     public String test() {
@@ -102,10 +121,28 @@ public class DemoSpringMVC {
     }
 
 
-    @RequestMapping(value = "getRelationships", method = RequestMethod.GET)
-    public String getRelationships(Map<String,List<Relationship>> map) {
-        map.put("relationships", relationshipMapper.selectRelationshipAll());
+    @RequestMapping(value = "/getRelationships", method = RequestMethod.GET)
+    public String getRelationships(Map<String, List<Relationship>> map) {
+        //map.put("relationships", relationshipMapper.selectRelationshipAll());
         return "relationships";
+    }
+
+    @RequestMapping(value = "/getJSON", method = RequestMethod.GET)
+    @ResponseBody
+    public Map getJSON() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("name", "三年二班");
+        map.put("schoolName", "西京学院");
+        List<Map<String, Object>> student = new ArrayList<Map<String, Object>>();
+        for (int i = 0; i < 10; i++) {
+            Map<String, Object> student1 = new HashMap<String, Object>();
+            student1.put("studentName", "学生姓名" + i);
+            student1.put("age", "年龄");
+            student.add(student1);
+        }
+
+        map.put("banji", student);
+        return map;
     }
 
 

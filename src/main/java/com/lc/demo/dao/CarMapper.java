@@ -15,4 +15,6 @@ public interface CarMapper {
 
     List<Car> selectAllCar();
 
+    int insertCar(Car car);
+
 }

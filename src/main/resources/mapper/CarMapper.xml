@@ -6,7 +6,7 @@
         <result property="carName" column="car_name"></result>
         <result property="carType" column="car_type"></result>
         <!-- 注意:这里的Person表的column 主键ID不能和CarID相同,否则只能查出来一条数据 -->
-        <collection property="personList" ofType="com.lc.demo.entities.Person" >
+        <collection property="personList" ofType="com.lc.demo.entities.Person">
             <id column="pid" property="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <result column="person_name" property="personName" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <result column="person_pwd" property="personPwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -18,8 +18,12 @@
         SELECT c.*,p.* from t_car c , person p  WHERE c.id = p.car_id  and  c.id = concat(#{id},'%')
     </select>
 
-    <select id="selectAllCar" resultMap="BaseResultMap" >
+    <select id="selectAllCar" resultMap="BaseResultMap">
         SELECT * from t_car c RIGHT JOIN person p on c.id = p.car_id;
     </select>
+
+    <insert id="insertCar" parameterType="com.lc.demo.entities.Car" useGeneratedKeys="true" keyProperty="id">
+        insert into t_car VALUES (#{id},#{carName},#{carType})
+    </insert>
 
 </mapper>

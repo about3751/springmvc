@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lc.demo.dao.PersonMapper">
     <resultMap id="BaseResultMap" type="com.lc.demo.entities.Person">
-            <id column="pid" property="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <result column="person_name" property="personName" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <result column="person_pwd" property="personPwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <id column="pid" property="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="person_name" property="personName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="person_pwd" property="personPwd" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <association property="car" javaType="com.lc.demo.entities.Car">
             <id column="id" property="id"></id>
             <result property="carName" column="car_name"></result>
@@ -20,13 +20,14 @@
   </sql>
 
     <select id="selectPersonByCarId" resultMap="BaseResultMap" parameterType="Integer">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from
         person
         where car_id = {#id};
     </select>
 
-    <select id="selectPersons" resultMap="BaseResultMap" >
+    <select id="selectPersons" resultMap="BaseResultMap">
         select * from person LEFT JOIN t_car on person.car_id = t_car.id
     </select>
 

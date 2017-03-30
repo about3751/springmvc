@@ -15,7 +15,8 @@ public class Customer {
 
     private List<Ticket> tickets;
 
-    public Customer(){}
+    public Customer() {
+    }
 
     public Customer(Integer id, String customerName, Integer customerTel, List<Ticket> tickets) {
         this.id = id;

@@ -41,8 +41,7 @@ public class Test {
     }
 
     @org.junit.Test
-    public void test1()
-    {
+    public void test1() {
         List<Relationship> relationShips = relationShipService.getAll();
 
         for (Relationship relationShip : relationShips) {
@@ -54,26 +53,24 @@ public class Test {
      * Car和Person 一对多查询
      */
     @org.junit.Test
-    public void testCarOnToMany()
-    {
+    public void testCarOnToMany() {
 
-            Car cars = carService.selectCarById("1");
-            System.out.println(" C " + cars.getId() + " -- " +  cars.getCarName());
-            for (Person person : cars.getPersonList()) {
-                System.out.println(" P " + person.getId() + " -- " +  person.getPersonName());
-            }
+        int cars = carService.addCar(new Car());
+//            System.out.println(" C " + cars.getId() + " -- " +  cars.getCarName());
+//            for (Person person : cars.getPersonList()) {
+//                System.out.println(" P " + person.getId() + " -- " +  person.getPersonName());
+//            }
     }
 
 
     @org.junit.Test
-    public void test3()
-    {
+    public void test3() {
         List<Person> personList = personService.selectPersons();
 
         for (Person person : personList) {
-            System.out.println(" P " + person.getId() + " -- " +  person.getPersonName()
+            System.out.println(" P " + person.getId() + " -- " + person.getPersonName()
 
-                    + " -- "  + person.getCar().getCarName()
+                    + " -- " + person.getCar().getCarName()
 
             );
         }
@@ -81,15 +78,14 @@ public class Test {
     }
 
     @org.junit.Test
-    public void test4()
-    {
+    public void test4() {
 
         List<Car> cars = carService.queryAll();
 
         for (Car car : cars) {
-            System.out.println(" C " + car.getId() + " -- " +  car.getCarName());
+            System.out.println(" C " + car.getId() + " -- " + car.getCarName());
             for (Person person : car.getPersonList()) {
-                System.out.println(" P " + person.getId() + " -- " +  person.getPersonName());
+                System.out.println(" P " + person.getId() + " -- " + person.getPersonName());
 
             }
         }
@@ -97,8 +93,7 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testOneToMany()
-    {
+    public void testOneToMany() {
         Customer customer = customerService.queryCustomerByName("小王");
         System.out.println(customer.getCustomerName());
         List<Ticket> tickets = customer.getTickets();
@@ -108,8 +103,7 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testQueryAllTickets()
-    {
+    public void testQueryAllTickets() {
         List<Ticket> tickets = ticketService.queryAllTikets();
 
         for (Ticket ticket : tickets) {

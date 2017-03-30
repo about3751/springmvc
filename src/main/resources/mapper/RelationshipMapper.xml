@@ -18,12 +18,12 @@
             </constructor>
         </association>
     </resultMap>
-    
+
     <select id="selectRelationshipAll" resultMap="Base_Result_Map">
         SELECT r.id,b.book_name,p.person_name,b.add_time,p.person_pwd from relationship r
         INNER JOIN person p
         INNER JOIN t_book b
-        ON r.person_id = p.id  AND  r.book_id = b.id
+        ON r.person_id = p.id AND r.book_id = b.id
     </select>
-    
+
 </mapper>

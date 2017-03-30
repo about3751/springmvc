@@ -13,7 +13,8 @@ public class Ticket {
 
     private Customer customerId;
 
-    public Ticket(){}
+    public Ticket() {
+    }
 
     public Ticket(Integer id, String address, Integer price, Customer customerId) {
         this.id = id;

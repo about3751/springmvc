@@ -13,7 +13,7 @@ public class Person {
 
     private List<Relationship> relationShips;
 
-    public Person(Integer id, String personName, String personPwd,Car car) {
+    public Person(Integer id, String personName, String personPwd, Car car) {
         this.id = id;
         this.personName = personName;
         this.personPwd = personPwd;

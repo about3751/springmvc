@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="selectCustomerByName" parameterType="String" resultMap="BaseResultMap">
-      select c.*,t.* from t_customer c,t_ticket t  where  c.customerId=t.ticketCId and c.customerName =#{name};
+        select c.*,t.* from t_customer c,t_ticket t where c.customerId=t.ticketCId and c.customerName =#{name};
     </select>
 
 </mapper>

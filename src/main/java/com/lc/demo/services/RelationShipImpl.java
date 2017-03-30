@@ -1,4 +1,4 @@
-package com.lc.demo.services.impl;
+package com.lc.demo.services;
 
 import com.lc.demo.dao.RelationshipMapper;
 import com.lc.demo.entities.Relationship;
