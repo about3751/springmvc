@@ -2,7 +2,11 @@ package com.lc.demo.controller;
 
 import com.lc.demo.entities.Book;
 import com.lc.demo.entities.Relationship;
+import com.lc.demo.entities.jsonentities.JSONData;
 import com.lc.demo.services.BookService;
+import jdk.nashorn.internal.parser.JSONParser;
+import org.codehaus.jackson.map.util.JSONPObject;
+import org.codehaus.jackson.map.util.JSONWrappedObject;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -32,25 +40,25 @@ public class DemoSpringMVC {
 
     /**
      * HTTP 状态码错误
+     *
      * @return
      */
-    @ResponseStatus(value = HttpStatus.NOT_FOUND,reason = "URL路径错误")
-    public String testHttpStatus()
-    {
+    @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "URL路径错误")
+    public String testHttpStatus() {
         return "exception";
     }
 
 
     /**
      * 针对当前Handler的Exception处理
+     *
      * @param ex
      * @return
      */
     @ExceptionHandler(value = {Exception.class})
-    public ModelAndView testException(Exception ex)
-    {
+    public ModelAndView testException(Exception ex) {
         ModelAndView modelAndView = new ModelAndView("exception");
-        modelAndView.addObject("ex",ex);
+        modelAndView.addObject("ex", ex);
         return modelAndView;
     }
 
@@ -143,6 +151,28 @@ public class DemoSpringMVC {
 
         map.put("banji", student);
         return map;
+    }
+
+
+    @RequestMapping("/testAjax")
+    @ResponseBody
+    public Map<String,String> testAjax(HttpServletResponse response, @RequestBody Map<String,List<Map<String,String>>> data) throws IOException {
+
+        for(Map.Entry m : data.entrySet())
+        {
+            System.out.println(m.getKey() + " ---> " + m.getValue());
+        }
+
+        Map<String,String> map = new HashMap<>();
+        map.put("resultCode","200");
+
+        return map;
+
+        // 当返回值为Void时 使用PrintWriter来返回数据
+//        PrintWriter printWriter = response.getWriter();
+//        printWriter.write("{\"resultCode\":\"200\"}");
+//        printWriter.close();
+//        printWriter.flush();
     }
 
 

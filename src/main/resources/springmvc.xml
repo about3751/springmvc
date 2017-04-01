@@ -21,7 +21,9 @@
      </context:component-scan> -->
 
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+
+    </mvc:annotation-driven>
 
     <!--
 		default-servlet-handler 将在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler,
@@ -126,6 +128,7 @@
         </mvc:interceptor>
                     -->
     </mvc:interceptors>
+
 
 
 </beans>
